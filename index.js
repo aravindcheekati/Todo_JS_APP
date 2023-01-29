@@ -1,6 +1,9 @@
 let todoWrapper  = document.getElementById("todoWrapper");
 let saveBtn  = document.getElementById("save");
 let todoText = document.getElementById("todoText");
+let removeAllBtn = document.getElementById("removeAllBtn");
+let removeContainer = document.getElementById("removeContainer");
+let notFound = document.getElementById("notFound");
 
 // Todo List Array
 let todoList = [];
@@ -15,9 +18,14 @@ saveBtn.addEventListener('click', () => {
     }
     todoList.push(todoItem);
     todoText.value = "";
-    renderTodoItems(todoList);
+    renderTodoItems();
 });
 
+// Remove All TODO Items
+removeAllBtn.addEventListener('click', () => {
+    todoList = [];
+    renderTodoItems();
+});
 
 // Delete TODO Item
 function onDelete(id) {
@@ -26,7 +34,29 @@ function onDelete(id) {
     renderTodoItems();
 }
 
+// Edit TODO Item 
+function onEdit(id) {
+    const editTodo = todoList.filter(item => {
+        if (id === item.id) {
+            todoText.value = item.todo;
+        }
+    })
+}
+
+// Render TODO Items
 const renderTodoItems = () => {
+    todoWrapper.innerHTML = "";
+    
+    // Render Remove All Button
+    if (todoList.length > 0) {
+        removeContainer.style.display = "block";
+        notFound.style.display = "none";
+    } else {
+        removeContainer.style.display = "none";
+        notFound.style.display = "block";
+    } 
+
+    // Render TODO Item
     for (item of todoList) {
         let {id, todo} = item;
     
@@ -70,6 +100,9 @@ const renderTodoItems = () => {
         // Creating Edit Button 
         let editButton = document.createElement("BUTTON");
         editButton.id = "edit";
+        editButton.onclick = function() {
+            onEdit(id);
+        }
         actionContainer.appendChild(editButton);
     
         // Creating Edit Button Icon
