@@ -17,6 +17,7 @@ saveBtn.addEventListener('click', () => {
         id: id,
         todo: todoTextValue
     }
+
     todoList.push(todoItem);
     todoText.value = "";
     renderTodoItems();
@@ -32,28 +33,6 @@ removeAllBtn.addEventListener('click', () => {
 function onDelete(id) {
     const updatedTodo = todoList.filter(item => id !== item.id);
     todoList = updatedTodo;
-    renderTodoItems();
-}
-
-// Edit TODO Item 
-function onEdit(id) {
-    const editTodo = todoList.filter(item => {
-        if (id === item.id) {
-            todoText.value = item.todo;
-            saveBtn.style.display = "none";
-            updateBtn.style.display = "block";
-            let updatedData = null;
-            updateBtn.onclick = () => {
-                saveBtn.style.display = "block";
-                updateBtn.style.display = "none";
-                updatedData = {...item, todo: todoText.value};
-            }
-            
-            return updatedData;
-        } 
-        return item;
-    })
-    todoList = editTodo;
     renderTodoItems();
 }
 
@@ -111,19 +90,6 @@ const renderTodoItems = () => {
         let actionContainer = document.createElement("DIV");
         actionContainer.classList.add("action-container");
         todoListItem.appendChild(actionContainer);
-    
-        // Creating Edit Button 
-        let editButton = document.createElement("BUTTON");
-        editButton.id = "edit";
-        editButton.onclick = function() {
-            onEdit(id);
-        }
-        actionContainer.appendChild(editButton);
-    
-        // Creating Edit Button Icon
-        let editButtonIcon = document.createElement("I");
-        editButtonIcon.classList.add("fa", "fa-edit", "edit");
-        editButton.appendChild(editButtonIcon);
     
         // Creating Edit Button 
         let deleteButton = document.createElement("BUTTON");
