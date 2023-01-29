@@ -24,30 +24,17 @@
     <main>
         <div class="container">
             <div class="input-box">
-                <input type="text" placeholder="Enter TODO Text">
-                <button>Save</button>
+                <input type="text" id="todoText" placeholder="Enter TODO Text">
+                <button id="save">Save</button>
             </div>
-            <ul class="todo-container" id="todoWrapper">
-              <li class="todo-item">
-                <div class="checkbox-container">
-                  <input type="checkbox" class="checkbox"/>
-                  <div class="todo-text-container">
-                    <p>Learn HTML </p>
-                  </div>
-                </div>
-                
-                <div class="action-container">
-                  <button>
-                    <i class="fa fa-edit edit"></i>
-                  </button>
-                  <button>
-                    <i class="fa fa-trash delete"></i>
-                  </button>
-                </div>
-              </li>
-            </ul>
+            <ul class="todo-container" id="todoWrapper"></ul>
         </div>
     </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <p>Created By Aravind Cheekati</p>
+    </footer>
 
     <!-- SCRIPT FILE LINK -->
     <script src="index.js"></script>

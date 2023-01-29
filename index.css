@@ -68,6 +68,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 10px 0px;
 }
 
 .checkbox-container {
@@ -108,4 +109,21 @@
 .delete {
     color: red;
     font-size: 20px;
+}
+
+.checked-todo {
+    background-color: #404040;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+.footer {
+    width: 100%;
+    height: 70px;
+    background-color: #404040;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
