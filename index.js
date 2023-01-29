@@ -47,7 +47,6 @@ function onEdit(id) {
                 saveBtn.style.display = "block";
                 updateBtn.style.display = "none";
                 updatedData = {...item, todo: todoText.value};
-                console.log(updatedData);
             }
             
             return updatedData;
