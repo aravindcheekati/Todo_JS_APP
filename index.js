@@ -4,13 +4,14 @@ let todoText = document.getElementById("todoText");
 let removeAllBtn = document.getElementById("removeAllBtn");
 let removeContainer = document.getElementById("removeContainer");
 let notFound = document.getElementById("notFound");
+let updateBtn = document.getElementById("update");
 
 // Todo List Array
 let todoList = [];
 
 // Add TODO Item to TodoList
 saveBtn.addEventListener('click', () => {
-    let id = todoList.length;
+    let id = Math.floor(Math.random() * 1000);
     let todoTextValue = todoText.value;
     const todoItem = {
         id: id,
@@ -39,9 +40,24 @@ function onEdit(id) {
     const editTodo = todoList.filter(item => {
         if (id === item.id) {
             todoText.value = item.todo;
-        }
+            saveBtn.style.display = "none";
+            updateBtn.style.display = "block";
+            let updatedData = null;
+            updateBtn.onclick = () => {
+                saveBtn.style.display = "block";
+                updateBtn.style.display = "none";
+                updatedData = {...item, todo: todoText.value};
+                console.log(updatedData);
+            }
+            
+            return updatedData;
+        } 
+        return item;
     })
+    todoList = editTodo;
+    renderTodoItems();
 }
+
 
 // Render TODO Items
 const renderTodoItems = () => {
